@@ -18,7 +18,7 @@ load_day(Day) ->
             Input = lists:filtermap(fun (Binary) ->
                 case byte_size(Binary) of
                     0 -> false;
-                    _ -> {true, list_to_integer(binary_to_list(Binary))}
+                    _ -> {true, binary_to_list(Binary)}
                 end
             end, binary:split(Data, [<<"\n">>], [global])),
 

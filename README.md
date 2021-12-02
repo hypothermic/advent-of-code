@@ -9,6 +9,7 @@ No peeking :)
 | Day | Time required | Finished at (CET) | Global rank | Solution                 |
 | --- | ------------- | ----------------- | ----------- | ------------------------ |
 | 1   | 10:31         | 06:10 AM          | 2608        | [day1.erl](src/day1.erl) |
+| 2   | 06:08         | 06:06 AM          | 4147        | [day2.erl](src/day2.erl) |
 
 Build & run
 -----

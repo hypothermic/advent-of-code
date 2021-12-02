@@ -18,7 +18,7 @@ iterate(Current, {_Prev, Count}) ->
 first(Input) ->
 	{_, Count} = lists:foldl(fun (Current, AccIn) ->
 		iterate(Current, AccIn)
-	end, {?INFINITE, 0}, Input),
+	end, {?INFINITE, 0}, lists:map(fun(A) -> list_to_integer(A) end, Input)),
 
 	Count.
 
@@ -32,4 +32,4 @@ slide(_, _, _, Count) ->
 	Count.
 
 second(Input) ->
-	slide(length(Input)-2, Input, ?INFINITE, 0).
+	slide(length(lists:map(fun(A) -> list_to_integer(A) end, Input))-2, Input, ?INFINITE, 0).
