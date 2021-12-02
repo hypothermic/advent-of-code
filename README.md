@@ -14,5 +14,9 @@ No peeking :)
 Build & run
 -----
 
+If you want to run this project, make sure you have [rebar3](http://www.rebar3.org/) installed.
+It's the de-facto toolchain for Erlang nowadays, so you really shouldn't be using anything else.
+
+
     $ rebar3 escriptize
     $ set -m && clear && _build/default/bin/aoc21
