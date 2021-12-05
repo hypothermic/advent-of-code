@@ -43,12 +43,23 @@ calc_line([{{X1, Y1}, {X2, Y2}} = Line | Rest], Out, Diag) ->
 	case Diag of
 		false -> calc_line(Rest, Out, Diag);
 		true ->
-			calc_line(Rest,
-				[{X, Y} ||
-					X <- lists:seq(erlang:min(X1, X2), erlang:max(X1, X2)),
-					Y <- lists:seq(erlang:min(Y1, Y2), erlang:max(Y1, Y2))
-				] ++ Out, Diag)
+			LeftX = erlang:min(X1, X2),
+			RightX = erlang:max(X1, X2),
+			Vel = if
+				Y2 > Y1 -> up;
+				true -> down
+			end,
+			calc_line(Rest, calc_diag({LeftX, Y2}, {RightX, Y1}, Vel, []) ++ Out, Diag)
 	end.
+
+calc_diag({X, _Y}, {EndX, _EndY}, _Vel, Out) when X > EndX ->
+	Out;
+
+calc_diag({X, Y}, {EndX, EndY}, Vel, Out) when Vel == up ->
+	calc_diag({X + 1, Y - 1}, {EndX, EndY}, Vel, [{X, Y} | Out]);
+
+calc_diag({X, Y}, {EndX, EndY}, Vel, Out) ->
+	calc_diag({X + 1, Y + 1}, {EndX, EndY}, Vel, [{X, Y} | Out]).
 
 run(Input, Diagonals) ->
 	Lines = lists:map(fun parse_line/1, Input),
@@ -56,6 +67,7 @@ run(Input, Diagonals) ->
 
 	%io:format("points: ~p\n", [Points]),
 
+	% dit kan verbeterd worden. duurt echt veel te lang nu...
 	Dupes = lists:foldl(fun(A, Acc) ->
 		case length([B || B <- Points, B =:= A]) of
 			1 -> Acc;
