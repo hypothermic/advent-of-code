@@ -15,6 +15,7 @@ No peeking :)
 | 5   | 26:30         | 06:26 AM          | 1652        | [day5.erl](src/day5.erl) |
 | 6   | 19:02         | 06:19 AM          | 1841        | [day6.erl](src/day6.erl) |
 | 7   | 16:30         | 06:16 AM          | 4087        | [day7.erl](src/day7.erl) |
+| 8   | 33:01         | 06:33 AM          | 542         | [day8.erl](src/day8.erl) |
 
 Build & run
 -----
