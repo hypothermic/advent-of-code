@@ -1,4 +1,4 @@
--module(day2).
+-module(solution).
 -author("hypothermic").
 
 %% API

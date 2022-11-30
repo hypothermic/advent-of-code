@@ -1,7 +1,7 @@
--module(day1).
+-module(solution).
 -author("hypothermic").
 
--define(INFINITE, math:pow(10,10)).
+-define(INFINITE, math:pow(10, 10)).
 
 %% API
 -export([

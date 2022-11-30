@@ -1,15 +1,24 @@
-# I recommend you just type the commands in README.md directly into the console
-# Because make can sometimes not display the output correctly :)
+SOURCES			?= src/*.erl 20**/day**/solution.erl
+SCRIPT_PATH	 	?= ./_build/default/bin
+SCRIPT_BIN		?= $(SCRIPT_PATH)/aoc
+OUT_PATH    	?= ../
 
-TXT_PATH    ?= ./src/
-SCRIPT_PATH ?= ../_build/default/bin/
-OUT_PATH    ?= ../
+# When "run" target is specified, pass along all args
+# https://stackoverflow.com/a/14061796
+ifeq (run, $(firstword $(MAKECMDGOALS)))
+  RUN_ARGS := $(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
+  $(eval $(RUN_ARGS):;@:)
+endif
 
 .PHONY: all
 all: build run
 
-build:
+build: $(SCRIPT_BIN)
+$(SCRIPT_BIN): $(SOURCES)
 	rebar3 escriptize
 
-run:
-	cd $(TXT_PATH) || set -m && clear || $(SCRIPT_PATH)aoc21 &> $(OUT_PATH)out.txt
+clean:
+	rm $(SCRIPT_BIN)
+
+run: build
+	set -m && $(SCRIPT_BIN) $(RUN_ARGS)
