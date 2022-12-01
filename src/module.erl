@@ -39,7 +39,7 @@ exec_day({Mode, Year, Day}) ->
 
 					Input = lists:filtermap(fun (Binary) ->
 						case byte_size(Binary) of
-							0 -> false;
+							%0 -> false; % 2022-day1 is formatted with newlines :(
 							_ -> {true, binary_to_list(Binary)}
 						end
 					end, binary:split(Data, [<<"\n">>], [global])),
