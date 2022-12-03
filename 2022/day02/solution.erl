@@ -52,7 +52,6 @@ iter2(["" | T], Score) ->
 	iter2(T, Score);
 
 iter2([Ln | T], Score) ->
-	io:format("Ln: ~p, Sc: ~p ~n", [Ln, Score]),
 	[They, Res] = string:split(Ln, " "),
 	Th = shp(They),
 	iter2(T, Score+p2(Th, Res));

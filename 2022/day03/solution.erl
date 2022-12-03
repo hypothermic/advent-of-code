@@ -55,8 +55,6 @@ i2([L1, L2, L3 | T], Sum) ->
 	C = common3d(L1, L2, L3, 0),
 	V = val(C),
 
-	io:format("C: ~p, V: ~p~n", [C, V]),
-
 	i2(T, Sum+V);
 
 i2(_, Sum) ->
