@@ -47,12 +47,12 @@ exec_day({Mode, Year, Day}) ->
 					First = Module:first(Input),
 					Second = Module:second(Input),
 
-					io:format("Day ~B part 1 answer: ~B, part 2 answer: ~B\n", [
+					io:format("Day ~B part 1 answer: ~p, part 2 answer: ~p\n", [
 						Day, First, Second
 					]),
 
 					file:write_file(path_to_day_output(Path),
-						integer_to_list(First) ++ "\n" ++ integer_to_list(Second));
+						ensure_list(First) ++ "\n" ++ ensure_list(Second));
 				{error, Reason} ->
 					io:format("Error: ~w", [Reason]),
 					error
@@ -85,6 +85,12 @@ fetch_day_input(Folder, Year, Day) ->
 		_ ->
 			Result
 	end.
+
+ensure_list(A) when is_integer(A) ->
+	integer_to_list(A);
+
+ensure_list(A) ->
+	A.
 
 challenge_url(Year, Day) ->
 	"https://adventofcode.com/" ++ integer_to_list(Year)
